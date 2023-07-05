@@ -1,0 +1,37 @@
+#下载Anaconda
+wget https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh
+
+#安装Anaconda
+sh Anaconda3-2023.03-1-Linux-x86_64.sh
+
+#创建Python环境
+conda create -n pt39 python=3.9
+
+#切换到pt39环境
+conda activate pt39
+
+#安装PyTorch
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+
+#安装HuggingFace
+pip install datasets==2.9.0
+pip install diffusers==0.15.1
+pip install transformers==4.26.1
+
+#第2章/安装和配置Jupyter Notebook
+#安装Jupyter Notebook
+pip install jupyter
+
+#生成配置文件
+jupyter notebook --generate-config --allow-root
+
+#配置允许远程访问和访问令牌
+vim ~/.jupyter/jupyter_notebook_config.py
+c.NotebookApp.ip = '*'
+c.NotebookApp.token = 'your_token_here'
+
+#启动
+jupyter notebook --config=/root/.jupyter/jupyter_notebook_config.py --allow-root --notebook-dir=/path/to/your/code
+
+#访问
+http://your_server_ip:8888
